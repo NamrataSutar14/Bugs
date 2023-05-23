@@ -1,0 +1,334 @@
+@import "~/Content/variables.less";
+
+.page-header,
+.search-form,
+.block-header,
+.page-content,
+.search-form .input-text,
+.search-form .form-input,
+#latest-challenges,
+#latest-challenges .challenges-list,
+#latest-challenges .no-campaigns-found
+{
+    .border-box();
+}
+
+#latest-challenges
+{
+    height: 100%;
+    width: 100%;
+}
+
+.block-header {
+    background-color: var(--primary-background-color);
+    border-bottom: 1px solid @inputborder_color;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding: 0 15px 0 35px;
+    z-index: 7001;
+}
+
+.page-content
+{
+    overflow: hidden;
+    padding-left: 390px;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.search-form {
+    background-color: var(--primary-background-color);
+    border-right: 1px solid @inputborder_color;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 390px;
+
+    .universal-loader {
+        top: 50px;
+        z-index: 7001;
+    }
+}
+
+.search-form .form-container
+{
+    .panel-content-paddings();
+    margin: 0;
+}
+
+
+#latest-challenges .form-item label
+{
+    margin-right: 10px;
+}
+
+#latest-challenges .form-item .ui-datepicker-trigger
+{
+    display: none;
+    height: 0;
+}
+
+#latest-challenges .form-item .date-icon
+{
+    position: absolute;
+    right: 7px;
+    top: 6px;
+    font-size: 16px;
+    color: var(--action-color);
+}
+
+#latest-challenges {
+    .input-text, 
+    .input-select {
+        width: 240px;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+#latest-challenges .buttons
+{
+    .bottom-left-buttons();
+}
+
+.result-container {
+    .border-box();
+    background: var(--primary-background-color);
+    height: 100%;
+    padding-top: 50px;
+    position: relative;
+    width: 100%;
+
+    .block-header {
+        padding-left: 15px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .universal-loader {
+        top: 50px;
+        z-index: 7001;
+        background-color: @overlay-color;
+    }
+
+    .challenges-list-wrapper {
+        height: 100%;
+        overflow-y: auto;
+    }
+}
+
+#latest-challenges .no-campaigns-found {
+    margin: 0;
+    padding-top: 30px;
+    text-align: center;
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+#latest-challenges .challenges-list {
+    .panel-content-paddings();
+    font-size: 0;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+    display: none;
+
+    &.active {
+        display: grid;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: minmax(13%, 75px);
+        gap: 10px;
+    }
+}
+
+
+#latest-challenges .result-container .loading
+{
+    background-image: url("../images/PHD_Source_Loading_24x24.gif");
+    height: 24px;
+    width: 24px;
+    position: fixed;
+    bottom: 0;
+    right: 1%;
+}
+
+@keyframes red-channel-dot {
+
+    0% {
+        opacity: 1
+    }
+
+    70% {
+        opacity: 1
+    }
+
+    85% {
+        opacity: 0.3
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+#latest-challenges .challenges-list .latest-challenge-item-container {
+    .border-box();
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: white;
+    border-radius: @large-border-radius;
+    overflow: hidden;
+    border: 1px solid #f6f6f6;
+    padding: 0 10px 0 20px;
+
+
+    .online-container {
+        position: absolute;
+        left: 18px;
+        top: 17px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1px;
+
+        .red-dot {
+            display: block;
+            width: 10px;
+            height: 10px;
+            box-shadow: 0px 0px 1px 1px #d51566;
+            background-color: #d51566;
+            transform-style: preserve-3d;
+            border-radius: 50%;
+            animation: red-channel-dot 0.9s linear infinite;
+        }
+
+        .red-dot-label {
+            color: #d51566;
+            font-size: 10px;
+        }
+
+        @media all and (max-height: 900px) {
+            left: 12px;
+
+            .red-dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    }
+
+    .promoted-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        height: 40px;
+        width: 40px;
+        background-image: url('../images/stripe_x2.png');
+        background-position: 50% 50%;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        transform: rotate( -90deg );
+    }
+
+    .icon-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 18%;
+        height: 100%;
+
+        .svg-icon {
+            height: 75%;
+            width: 100%;
+            color: var(--challenge-icon-invert-color);
+        }
+    }
+
+    .challenge-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        height: 100%;
+        width: 75%;
+    }
+
+    .challenges-header {
+        font-size: @base-font-size;
+        height: 27%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .challenges-footer {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 1.2;
+        padding-bottom: 5px;
+
+        a {
+            font-size: @base-font-size;
+        }
+    }
+
+    .challenge-start-date {
+        color: @label_text_color;
+        font-size: @label-font-size;
+    }
+
+    .go-container {
+        flex-shrink: 0;
+
+        .goButton {
+            text-transform: capitalize;
+            vertical-align: top;
+        }
+    }
+
+    .remove-challenge-button {
+        background: url('../images/close.png') no-repeat;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        position: absolute;
+        top: 5px;
+        right: 2px;
+        opacity: 0;
+    }
+
+    &:hover .remove-challenge-button {
+        opacity: 1;
+    }
+}
+
+@media all and (max-height: 768px), all and (max-width: 1024px)
+{
+    #latest-challenges .challenges-list .latest-challenge-item-container .go-container
+    {
+        bottom: 10px;
+        top: auto;
+    }
+
+    #latest-challenges .challenges-list .latest-challenge-item-container .challenges-footer .challenge-start-date
+    {
+        bottom: 2px;
+    }
+}
